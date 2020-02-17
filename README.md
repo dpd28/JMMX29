@@ -3,4 +3,4 @@
 
 Lenny bakes brownies.
 
-* [Resume] (homework/html-css/index.html)
+* [Resume](homework/html-css/index.html)
