@@ -38,7 +38,7 @@ var svg = d3.select("figure#chart") // do something to the html area specified
 
     var yScale = d3.scaleBand()
     .range([0, dimensions.boundedHeight])
-    .padding(0.3);
+    .padding(0);
 
     // check the data format
     var rowConvertor = function(d) {
@@ -76,6 +76,17 @@ d3.csv("data/musicdata.csv", rowConvertor)
 
         yScale.domain(data.map(d => d.genre)); // map method
 
+        var line = svg.selectAll("myLine")
+        .data(data)
+        .enter()
+        .append("line")
+        .attr("x1", d=> xScale(d.votes))
+        .attr("x2", xScale(0))
+        .attr("y1", d=> yScale(d.genre))
+        .attr("y2", d=> yScale(d.genre))
+        .attr("stroke-width", 1)
+        .attr("stroke", "black");
+
         var candy = svg.selectAll("circle")
         // join the selection of rectangles with data and then modify
         .data(data)
@@ -85,7 +96,7 @@ d3.csv("data/musicdata.csv", rowConvertor)
         .attr("cy", d => yScale(d.genre))
         .attr("cx", d => xScale(d.votes))
         .attr("r", 4)
-        .attr("height", yScale.bandwidth())
+       // .attr("height", yScale.bandwidth())
         .attr("fill", "red");
 
         // use line svg 4 values x 1 x2 y1 y2
