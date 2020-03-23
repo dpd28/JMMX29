@@ -85,7 +85,7 @@ d3.csv("data/musicdata.csv", rowConvertor)
         .attr("y1", d=> yScale(d.genre))
         .attr("y2", d=> yScale(d.genre))
         .attr("stroke-width", 0.95)
-        .attr("stroke", "grey");
+        .attr("stroke", "#797979");
 
         var candy = svg.selectAll("circle")
         // join the selection of rectangles with data and then modify
@@ -106,16 +106,17 @@ d3.csv("data/musicdata.csv", rowConvertor)
             .call(d3.axisBottom(xScale))
             .attr("transform", `translate(0, ${dimensions.boundedHeight})`);
     
-        
         var xAxisText = xAxis.selectAll("text")
             .attr("class", "axis_text")
+            .style("fill", "#797979")
         
         var yAxis = svg.append("g")
             .attr("class", "y-axis")
-            .call(d3.axisLeft(yScale))
+            .call(d3.axisLeft(yScale).tickSize(0))
         
         var yAxisText = yAxis.selectAll("text")
-            .attr("class", "axis_text");
+            .attr("class", "axis_text")
+            .style("fill", "#797979");
     }
 );
 
