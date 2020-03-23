@@ -38,7 +38,7 @@ var svg = d3.select("figure#chart") // do something to the html area specified
 
     var yScale = d3.scaleBand()
     .range([0, dimensions.boundedHeight])
-    .padding(0);
+    .padding(1);
 
     // check the data format
     var rowConvertor = function(d) {
@@ -84,8 +84,8 @@ d3.csv("data/musicdata.csv", rowConvertor)
         .attr("x2", xScale(0))
         .attr("y1", d=> yScale(d.genre))
         .attr("y2", d=> yScale(d.genre))
-        .attr("stroke-width", 1)
-        .attr("stroke", "black");
+        .attr("stroke-width", 0.95)
+        .attr("stroke", "grey");
 
         var candy = svg.selectAll("circle")
         // join the selection of rectangles with data and then modify
@@ -102,15 +102,16 @@ d3.csv("data/musicdata.csv", rowConvertor)
         // use line svg 4 values x 1 x2 y1 y2
 
         var xAxis = svg.append("g")
-            .attr("class", "x axis")
+            .attr("class", "x-axis")
             .call(d3.axisBottom(xScale))
             .attr("transform", `translate(0, ${dimensions.boundedHeight})`);
+    
         
         var xAxisText = xAxis.selectAll("text")
             .attr("class", "axis_text")
         
         var yAxis = svg.append("g")
-            .attr("class", "y axis")
+            .attr("class", "y-axis")
             .call(d3.axisLeft(yScale))
         
         var yAxisText = yAxis.selectAll("text")
